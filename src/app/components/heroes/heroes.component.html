@@ -1,0 +1,40 @@
+<h2>My Heroes</h2>
+
+<ul class="heroes">
+  <li [class.selected]="selectedHero==hero" class="badge" *ngFor="let hero of heroes" (click)="selectHero(hero)">
+    {{hero.name}} <span> {{hero.age}} </span>
+  </li>
+</ul>
+
+
+<div>
+
+  <p>
+    Hello, I am {{heroObj.name|uppercase}}, I am {{heroObj.age}} years old.
+  </p>
+
+  <label>
+    Hero Name: <input class="form-control" [(ngModel)]="heroObj.name" placeholder="Hero Name">
+  </label>
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Enter Code</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" style="display: inline">
+      <input type="color">
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+  </ng-template>
+
+  <!--<button type="button" (click)="addNewHero(heroObj)" class="btn btn-primary">Add</button>-->
+  <button type="button" (click)="showModal(content)" class="btn btn-primary">Add</button>
+
+</div>
+
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
